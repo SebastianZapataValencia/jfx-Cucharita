@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Dialog;
@@ -15,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
 public class ControllerAdminGUI {
@@ -53,7 +55,7 @@ public class ControllerAdminGUI {
 	@FXML
 	void openInventory(ActionEvent event) throws IOException {
 
-		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(""));
+		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Inventory.fxml"));
 		fxmlloader.setController(this);
 		Parent menu = fxmlloader.load();
 		mainPane.getChildren().setAll(menu);
@@ -172,9 +174,86 @@ public class ControllerAdminGUI {
 	void btnSetNewPassword(ActionEvent event) {
 
 	}
-
-	//_______________________________Methods________________________________
-
 	
+	//_______________________________Inventory________________________________
 	
+    @FXML
+    private TableView<?> tvInventory;
+
+    @FXML
+    private TableColumn<?, ?> tcIngredientName;
+
+    @FXML
+    private TableColumn<?, ?> tcQuantity;
+
+    @FXML
+    private TableColumn<?, ?> tcUnit;
+
+    @FXML
+    void btnAddIngredient(ActionEvent event) throws IOException {
+    	
+    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("AddIngredient.fxml"));
+		fxmlloader.setController(this);
+		DialogPane dialoguePane = fxmlloader.load();
+
+		Dialog<ButtonType> dialog = new Dialog<ButtonType>();
+		dialog.setDialogPane(dialoguePane);
+		dialog.showAndWait();
+
+    }
+
+    @FXML
+    void btnModifyIngredient(ActionEvent event) throws IOException {
+    	
+    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("ModifyIngredient.fxml"));
+		fxmlloader.setController(this);
+		DialogPane dialoguePane = fxmlloader.load();
+
+		Dialog<ButtonType> dialog = new Dialog<ButtonType>();
+		dialog.setDialogPane(dialoguePane);
+		dialog.showAndWait();
+
+    }
+
+
+    //_______________________________AddIngredients________________________________
+
+    @FXML
+    private TextField tfIngridientName;
+
+    @FXML
+    private TextField tfQuantity;
+
+    @FXML
+    private TextField tfUnit;
+
+    @FXML
+    void btnAddIngridients(ActionEvent event) {
+
+    }
+
+    //_______________________________AddIngredients________________________________
+
+    @FXML
+    private TextField tfMIngridientName;
+
+    @FXML
+    private TextField tfMQuantity;
+
+    @FXML
+    void btnAddMIngridients(ActionEvent event) {
+
+    }
+
+    //_______________________________Methods________________________________
+
+
+    public void alert(String title, String text) {
+
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setTitle(title);
+    	alert.setContentText(text);
+    	alert.showAndWait();
+    }
+
 }
